@@ -1,9 +1,9 @@
 # Aula 01 — Introdução às Estruturas de Dados
 
 **Disciplina:** Algoritmos e Estruturas de Dados II  
-**Professor:** Prof. Dr. Dilermando Piva Jr.  
+**Professor:** Prof. Dr. Dilermando Piva Jr.
 
-Este diretório reúne o material da primeira aula/capítulo sobre introdução às estruturas de dados com Python.
+Material da primeira aula/capítulo sobre introdução às estruturas de dados com Python, baseado no PDF de exercícios resolvidos fornecido para a disciplina.
 
 ## Conteúdo
 
@@ -15,8 +15,22 @@ Este diretório reúne o material da primeira aula/capítulo sobre introdução 
 - Projeto prático: lista de tarefas
 - Revisão e síntese do capítulo
 
-## Material
+## Exercícios resolvidos
 
-- `Exercícios-resolvidos-Capítulo-1.pdf` — resoluções comentadas dos exercícios e projetos propostos do Capítulo 1.
+| Arquivo | Conteúdo |
+|---|---|
+| `exercicio-01-lista-frutas.py` | Lista, `append()` e impressão |
+| `exercicio-02-pilha-livros.py` | Pilha e LIFO |
+| `exercicio-03-fila-clientes.py` | Fila e FIFO |
+| `exercicio-04-dicionario-contatos.py` | Dicionário e chave-valor |
+| `projeto-01-agenda-contatos.py` | Dicionário aninhado, adicionar, buscar e listar |
+| `projeto-02-lista-tarefas.py` | Lista, adicionar, concluir e visualizar tarefas |
+| `exercicios-resolvidos.py` | Todos os exercícios e projetos em um único arquivo |
 
-> Material disponibilizado para acompanhamento da disciplina e estudo pessoal.
+## Material de referência
+
+O conteúdo segue o PDF **“Estrutura de Dados com Python — Capítulo 1: Introdução às Estruturas de Dados — Resoluções comentadas dos exercícios e projetos propostos”**, com 9 páginas.
+
+Os códigos foram transcritos de acordo com as resoluções apresentadas no material, preservando os exemplos e a lógica ensinada no capítulo.
+
+> Material organizado para acompanhamento da disciplina e estudo pessoal.
