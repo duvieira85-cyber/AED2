@@ -1,13 +1,19 @@
 # Exercício 6 — Balanceamento de delimitadores
-# Uma pilha permite conferir se cada fechamento corresponde à última abertura pendente.
+# Uma pilha permite verificar se cada delimitador de fechamento
+# corresponde à última abertura que ainda está pendente.
+
 
 def balanceia_colchetes(expressao):
+    # Mapeia cada fechamento para seu respectivo delimitador de abertura.
     pares = {")": "(", "]": "[", "}": "{"}
+
+    # Guarda os delimitadores de abertura encontrados.
     pilha = []
 
+    # Analisa a expressão caractere por caractere.
     for caractere in expressao:
         if caractere in "([{":
-            # Guarda cada delimitador de abertura para conferência posterior.
+            # Empilha cada abertura para conferir posteriormente.
             pilha.append(caractere)
 
         elif caractere in ")]}":
@@ -15,18 +21,26 @@ def balanceia_colchetes(expressao):
             if not pilha:
                 return False
 
+            # Retira a última abertura pendente, seguindo LIFO.
             abertura = pilha.pop()
 
-            # O fechamento precisa corresponder exatamente à última abertura.
+            # O tipo do fechamento precisa corresponder à abertura retirada.
             if abertura != pares[caractere]:
                 return False
 
-    # Ao final, nenhuma abertura pode permanecer pendente.
+    # Se ainda existir abertura na pilha, algum delimitador não foi fechado.
     return not pilha
 
 
 if __name__ == "__main__":
+    # Expressão balanceada.
     print(balanceia_colchetes("({[]})"))
+
+    # Fechamento incompatível com a abertura.
     print(balanceia_colchetes("({[}])"))
+
+    # Expressão com diferentes tipos de delimitadores corretamente balanceados.
     print(balanceia_colchetes("{(a+b)*[c-d]}"))
+
+    # Falta um fechamento para uma das aberturas.
     print(balanceia_colchetes("((a+b)"))
