@@ -1,6 +1,11 @@
 # Exercício 1 — Lista de frutas
-# Criar uma lista, adicionar um elemento ao final e imprimir o resultado.
+# Uma lista armazena vários elementos em uma sequência.
+# O método append() adiciona um novo elemento ao final da lista.
 
 frutas = ["maçã", "banana", "laranja"]
+
+# Adiciona "morango" depois do último elemento existente.
 frutas.append("morango")
+
+# Exibe a lista atualizada.
 print(frutas)
