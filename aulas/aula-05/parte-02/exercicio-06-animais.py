@@ -1,25 +1,29 @@
-class Animal:
-    def __init__(self, nome):
-        self.nome = nome
+# Exercício 6 — Herança e polimorfismo
+# Classes filhas reutilizam a estrutura de Animal e implementam sons específicos.
 
+class Animal:
     def emitir_som(self):
-        return ""
+        # Comportamento genérico que será sobrescrito pelas subclasses.
+        return "Som de animal"
 
 
 class Cachorro(Animal):
     def emitir_som(self):
-        return "au au"
+        # Implementação específica para cachorro.
+        return "Au au!"
 
 
 class Gato(Animal):
     def emitir_som(self):
-        return "miau"
+        # Implementação específica para gato.
+        return "Miau!"
 
 
-animais = [
-    Cachorro("Rex"),
-    Gato("Mimi")
-]
+def mostrar_som(animal):
+    # A mesma função funciona com qualquer objeto compatível com a interface esperada.
+    print(animal.emitir_som())
 
-for animal in animais:
-    print(f"{animal.nome}: {animal.emitir_som()}")
+
+if __name__ == "__main__":
+    mostrar_som(Cachorro())
+    mostrar_som(Gato())
