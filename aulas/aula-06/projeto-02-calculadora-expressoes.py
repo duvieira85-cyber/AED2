@@ -1,18 +1,28 @@
+# Projeto 2 — Calculadora de expressões
+# Usa duas pilhas: uma para valores e outra para operadores.
+# A precedência dos operadores determina quando uma operação deve ser executada.
+
 import re
 
 
 def avaliar_expressao(expressao):
+    # Define a prioridade dos operadores matemáticos.
     precedencia = {"+": 1, "-": 1, "*": 2, "/": 2}
+
     valores = []
     operadores = []
 
+    # Separa números, parênteses e operadores da expressão.
     tokens = re.findall(
         r"\d+(?:\.\d+)?|[()+\-*/]",
         expressao.replace(" ", ""),
     )
 
     def aplicar_operador():
+        # Retira primeiro o operador que está no topo da pilha.
         operador = operadores.pop()
+
+        # Os dois últimos valores correspondem aos operandos da operação.
         b = valores.pop()
         a = valores.pop()
 
@@ -29,12 +39,15 @@ def avaliar_expressao(expressao):
 
     for token in tokens:
         if token.replace(".", "", 1).isdigit():
+            # Números são armazenados na pilha de valores.
             valores.append(float(token) if "." in token else int(token))
 
         elif token == "(":
+            # O parêntese de abertura marca o início de uma subexpressão.
             operadores.append(token)
 
         elif token == ")":
+            # Resolve os operadores até encontrar o parêntese correspondente.
             while operadores and operadores[-1] != "(":
                 aplicar_operador()
 
@@ -44,6 +57,7 @@ def avaliar_expressao(expressao):
             operadores.pop()
 
         else:
+            # Antes de inserir o novo operador, resolve os de maior ou igual precedência.
             while (
                 operadores
                 and operadores[-1] != "("
@@ -53,6 +67,7 @@ def avaliar_expressao(expressao):
 
             operadores.append(token)
 
+    # Finaliza as operações que ainda ficaram pendentes.
     while operadores:
         if operadores[-1] == "(":
             raise ValueError("Parênteses desbalanceados")
