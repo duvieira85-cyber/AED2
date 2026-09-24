@@ -1,123 +1,52 @@
+# Exercício 10 — Sistema de pedidos
+# Modela pedidos, produtos e cálculo do valor total utilizando orientação a objetos.
+
 class Produto:
-    contador = 0
-
     def __init__(self, nome, preco):
-        Produto.contador += 1
-        self.__id = Produto.contador
-        self.__nome = nome
-        self.__preco = preco
-
-    def get_id(self):
-        return self.__id
-
-    def get_nome(self):
-        return self.__nome
-
-    def get_preco(self):
-        return self.__preco
-
-    def set_preco(self, novo_preco):
-        if novo_preco > 0:
-            self.__preco = novo_preco
-            return True
-        return False
-
-    def calcular_frete(self):
-        return 0
-
-    def __str__(self):
-        return f"#{self.__id} - {self.__nome} - R$ {self.__preco:.2f}"
+        self.nome = nome
+        self.preco = preco
 
 
-class ProdutoFisico(Produto):
-    def __init__(self, nome, preco, peso):
-        super().__init__(nome, preco)
-        self.peso = peso
+class ItemPedido:
+    def __init__(self, produto, quantidade):
+        self.produto = produto
+        self.quantidade = quantidade
 
-    def calcular_frete(self):
-        return 5 + (2 * self.peso)
-
-
-class ProdutoDigital(Produto):
-    def __init__(self, nome, preco, tamanho_mb):
-        super().__init__(nome, preco)
-        self.tamanho_mb = tamanho_mb
-
-
-class Cliente:
-    def __init__(self, nome, email):
-        self.__nome = nome
-        self.__email = email
-
-    def get_nome(self):
-        return self.__nome
-
-    def get_email(self):
-        return self.__email
-
-    def __str__(self):
-        return f"{self.__nome} - {self.__email}"
+    def subtotal(self):
+        # Calcula o valor do item considerando sua quantidade.
+        return self.produto.preco * self.quantidade
 
 
 class Pedido:
-    contador = 0
+    def __init__(self):
+        self.itens = []
 
-    def __init__(self, cliente):
-        Pedido.contador += 1
-        self.__numero = Pedido.contador
-        self.__cliente = cliente
-        self.__produtos = []
-        self.__status = "aberto"
-
-    def adicionar_produto(self, produto):
-        if self.__status == "fechado":
-            print("Pedido fechado: não é possível adicionar produtos.")
-            return False
-        self.__produtos.append(produto)
-        return True
+    def adicionar_item(self, produto, quantidade):
+        # Adiciona um novo item ao pedido.
+        self.itens.append(ItemPedido(produto, quantidade))
 
     def calcular_total(self):
-        return sum(produto.get_preco() for produto in self.__produtos)
+        # Soma os subtotais de todos os itens do pedido.
+        return sum(item.subtotal() for item in self.itens)
 
-    def calcular_frete_total(self):
-        return sum(produto.calcular_frete() for produto in self.__produtos)
-
-    def fechar_pedido(self):
-        self.__status = "fechado"
-
-    def __str__(self):
-        linhas = [
-            f"Pedido #{self.__numero}",
-            f"Cliente: {self.__cliente}",
-            f"Status: {self.__status}",
-            "Produtos:"
-        ]
-        for produto in self.__produtos:
-            linhas.append(f"  - {produto}")
-        linhas.append(f"Total: R$ {self.calcular_total():.2f}")
-        linhas.append(f"Frete: R$ {self.calcular_frete_total():.2f}")
-        return "\n".join(linhas)
+    def listar_itens(self):
+        # Exibe cada item e seu subtotal.
+        for item in self.itens:
+            print(
+                f"{item.produto.nome} x{item.quantidade}: "
+                f"R$ {item.subtotal():.2f}"
+            )
 
 
-cliente = Cliente("Ana", "ana@email.com")
+if __name__ == "__main__":
+    arroz = Produto("Arroz", 25.00)
+    feijao = Produto("Feijão", 9.50)
 
-produtos = [
-    ProdutoFisico("Livro", 80, 1.2),
-    ProdutoDigital("Curso Python", 150, 850),
-    ProdutoFisico("Caderno", 30, 0.5)
-]
+    pedido = Pedido()
 
-pedido = Pedido(cliente)
+    # Monta o pedido com os produtos e suas respectivas quantidades.
+    pedido.adicionar_item(arroz, 2)
+    pedido.adicionar_item(feijao, 3)
 
-for produto in produtos:
-    pedido.adicionar_produto(produto)
-
-print(pedido)
-
-pedido.fechar_pedido()
-
-print("\nDepois de fechar:")
-print(pedido)
-
-print("\nTentativa de adicionar outro produto:")
-pedido.adicionar_produto(ProdutoFisico("Caneta", 5, 0.1))
+    pedido.listar_itens()
+    print(f"Total do pedido: R$ {pedido.calcular_total():.2f}")
