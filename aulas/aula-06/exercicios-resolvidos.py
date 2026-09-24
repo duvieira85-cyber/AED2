@@ -1,10 +1,12 @@
+# Aula 06 — Exercícios e projetos resolvidos
+# Reúne as soluções do Capítulo 6 em um único arquivo para facilitar os estudos.
+
 from exercicio_01_push_pop import acompanhar_pilha
 from exercicio_02_peek_pop import executar as exercicio_2
 from exercicio_03_propriedades_pilha import responder as exercicio_3
 from exercicio_04_pop_pilha_vazia import contar_tentativas_invalidas
 from exercicio_05_decimal_para_hexadecimal import decimal_para_hexa
 from exercicio_06_balanceamento_delimitadores import balanceia_colchetes
-from projeto_01_historico_filtros import HistoricoOperacoes
 from projeto_02_calculadora_expressoes import avaliar_expressao
 
 
