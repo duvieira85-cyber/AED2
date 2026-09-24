@@ -1,8 +1,9 @@
-def imprime_primeiro(lista):
-    print(lista[0])
+# Exercício 1 — Acesso direto
+# O acesso pelo índice é executado diretamente e tem complexidade O(1).
+
+def primeiro_elemento(lista):
+    return lista[0]
 
 
-lista = [10, 20, 30, 40, 50]
-imprime_primeiro(lista)
-
-# Complexidade: O(1).
+if __name__ == "__main__":
+    print(primeiro_elemento([10, 20, 30]))
