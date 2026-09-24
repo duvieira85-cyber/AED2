@@ -1,3 +1,6 @@
+# Exercício 5 — Conversão de decimal para hexadecimal
+# A pilha é usada para inverter a ordem dos restos obtidos nas divisões por 16.
+
 def decimal_para_hexa(n):
     if n < 0:
         raise ValueError("n deve ser não-negativo")
@@ -9,12 +12,17 @@ def decimal_para_hexa(n):
     pilha = []
 
     while n > 0:
+        # Cada resto representa um dígito hexadecimal.
         resto = n % 16
         pilha.append(digitos[resto])
+
+        # Divisão inteira prepara o próximo passo da conversão.
         n //= 16
 
     hexa = ""
+
     while pilha:
+        # Retira os dígitos na ordem inversa em que foram empilhados.
         hexa += pilha.pop()
 
     return hexa
