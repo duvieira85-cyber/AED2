@@ -1,3 +1,6 @@
+# Projeto 1 — Gestão de tarefas
+# Cada ciclo conclui no máximo uma tarefa e novas tarefas entram no final da fila.
+
 from collections import deque
 
 
@@ -9,12 +12,14 @@ def gestao_tarefas(tarefas_iniciais, ciclos, novas_por_ciclo=None):
         print(f"--- Ciclo {ciclo} ---")
 
         if fila:
+            # A tarefa mais antiga é sempre a primeira a ser concluída.
             atual = fila.popleft()
             print(f"Tarefa concluída: {atual}")
         else:
             print("Não há tarefa pendente para processar.")
 
         for nova in novas_por_ciclo.get(ciclo, []):
+            # Novas tarefas entram no final e aguardam sua vez.
             fila.append(nova)
             print(f"Tarefa adicionada: {nova}")
 
