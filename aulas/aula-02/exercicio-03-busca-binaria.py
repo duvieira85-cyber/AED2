@@ -1,7 +1,12 @@
+# Exercício 3 — Busca binária
+# A busca binária reduz o intervalo pela metade a cada comparação: O(log n).
+# A lista precisa estar ordenada para que a estratégia funcione.
+
 def busca_binaria(lista, alvo):
     esquerda = 0
     direita = len(lista) - 1
 
+    # Enquanto existir um intervalo válido para pesquisa.
     while esquerda <= direita:
         meio = (esquerda + direita) // 2
 
@@ -15,9 +20,5 @@ def busca_binaria(lista, alvo):
     return -1
 
 
-lista = [2, 5, 8, 12, 16, 21, 27, 31, 40]
-print("Posição de 21:", busca_binaria(lista, 21))
-print("Posição de 10:", busca_binaria(lista, 10))
-
-# Complexidade: O(log n).
-# A lista precisa estar ordenada.
+if __name__ == "__main__":
+    print(busca_binaria([2, 5, 8, 12, 16, 21, 27], 21))
