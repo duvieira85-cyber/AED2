@@ -1,15 +1,17 @@
+# Exercício 4 — Classe Livro
+# Demonstra uma classe simples com atributos e método para exibir os dados do livro.
+
 class Livro:
-    def __init__(self, titulo, autor, paginas):
+    def __init__(self, titulo, autor):
+        # Armazena as informações recebidas no objeto.
         self.titulo = titulo
         self.autor = autor
-        self.paginas = paginas
 
-    def descricao(self):
-        return f"{self.titulo} — {self.autor} ({self.paginas} páginas)"
+    def exibir(self):
+        # Retorna os dados do livro em formato legível.
+        return f"Título: {self.titulo} | Autor: {self.autor}"
 
 
-livro1 = Livro("Dom Casmurro", "Machado de Assis", 256)
-livro2 = Livro("1984", "George Orwell", 328)
-
-print(livro1.descricao())
-print(livro2.descricao())
+if __name__ == "__main__":
+    livro = Livro("Python para Análise de Dados", "Wes McKinney")
+    print(livro.exibir())
