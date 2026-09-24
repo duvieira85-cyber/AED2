@@ -1,28 +1,31 @@
 # Projeto 2 — Calculadora de expressões
-# Usa duas pilhas: uma para valores e outra para operadores.
-# A precedência dos operadores determina quando uma operação deve ser executada.
+# Utiliza duas pilhas: uma para valores e outra para operadores.
+# A precedência dos operadores determina a ordem das operações.
+
 
 import re
 
 
 def avaliar_expressao(expressao):
-    # Define a prioridade dos operadores matemáticos.
+    # Define a prioridade: multiplicação/divisão têm precedência
+    # sobre adição/subtração.
     precedencia = {"+": 1, "-": 1, "*": 2, "/": 2}
 
+    # Pilha dos números e pilha dos operadores encontrados na expressão.
     valores = []
     operadores = []
 
-    # Separa números, parênteses e operadores da expressão.
+    # Remove espaços e separa números, parênteses e operadores.
     tokens = re.findall(
         r"\d+(?:\.\d+)?|[()+\-*/]",
         expressao.replace(" ", ""),
     )
 
     def aplicar_operador():
-        # Retira primeiro o operador que está no topo da pilha.
+        # Retira o operador do topo da pilha.
         operador = operadores.pop()
 
-        # Os dois últimos valores correspondem aos operandos da operação.
+        # Retira os dois últimos valores, respeitando a ordem da operação.
         b = valores.pop()
         a = valores.pop()
 
@@ -33,31 +36,37 @@ def avaliar_expressao(expressao):
         elif operador == "*":
             valores.append(a * b)
         elif operador == "/":
+            # Evita realizar uma divisão inválida.
             if b == 0:
                 raise ZeroDivisionError("Divisão por zero")
+
             valores.append(a / b)
 
+    # Processa os tokens da expressão da esquerda para a direita.
     for token in tokens:
         if token.replace(".", "", 1).isdigit():
-            # Números são armazenados na pilha de valores.
+            # Números entram na pilha de valores.
             valores.append(float(token) if "." in token else int(token))
 
         elif token == "(":
-            # O parêntese de abertura marca o início de uma subexpressão.
+            # A abertura marca o início de uma subexpressão.
             operadores.append(token)
 
         elif token == ")":
-            # Resolve os operadores até encontrar o parêntese correspondente.
+            # Resolve operadores até encontrar a abertura correspondente.
             while operadores and operadores[-1] != "(":
                 aplicar_operador()
 
+            # Não encontrar "(" significa que os parênteses estão inválidos.
             if not operadores:
                 raise ValueError("Parênteses desbalanceados")
 
+            # Remove o "(" que serviu apenas como marcador.
             operadores.pop()
 
         else:
-            # Antes de inserir o novo operador, resolve os de maior ou igual precedência.
+            # Antes de empilhar o novo operador, resolve os operadores
+            # que possuem precedência maior ou igual à atual.
             while (
                 operadores
                 and operadores[-1] != "("
@@ -67,12 +76,14 @@ def avaliar_expressao(expressao):
 
             operadores.append(token)
 
-    # Finaliza as operações que ainda ficaram pendentes.
+    # Resolve os operadores restantes depois do fim da expressão.
     while operadores:
         if operadores[-1] == "(":
             raise ValueError("Parênteses desbalanceados")
+
         aplicar_operador()
 
+    # Uma expressão válida deve terminar com exatamente um valor.
     if len(valores) != 1:
         raise ValueError("Expressão inválida")
 
@@ -80,5 +91,6 @@ def avaliar_expressao(expressao):
 
 
 if __name__ == "__main__":
+    # Exemplos que demonstram precedência e uso de parênteses.
     print(avaliar_expressao("3 + 4 * (2 - 1)"))
     print(avaliar_expressao("10 / 2 + 6 * 3"))
