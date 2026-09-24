@@ -1,19 +1,23 @@
 # Exercício 2 — peek() consulta e pop() remove
-# O acesso ao último item representa o topo da pilha usada neste exercício.
+# O último item da lista representa o topo da pilha usada no exercício.
+# peek consulta esse elemento sem removê-lo; pop remove o elemento.
+
 
 def executar():
+    # Cria uma pilha vazia.
     pilha = []
 
+    # Insere os elementos na ordem indicada.
     pilha.append("a")
     pilha.append("b")
 
-    # peek: consulta o topo sem removê-lo.
+    # peek: consulta o topo sem alterar a pilha.
     x = pilha[-1]
 
-    # pop: remove o elemento que estava no topo.
+    # pop: remove o elemento que estava no topo, "b".
     pilha.pop()
 
-    # Após remover "b", "a" passa a ser o novo topo.
+    # Depois da remoção, "a" passa a ser o novo topo.
     y = pilha[-1]
 
     print("x =", x)
@@ -21,4 +25,5 @@ def executar():
 
 
 if __name__ == "__main__":
+    # Executa o exemplo de consulta e remoção do topo.
     executar()
