@@ -1,13 +1,14 @@
-def busca_sequencial(lista, alvo):
+# Exercício 3 — Primeira ocorrência
+# A busca termina assim que encontra a primeira ocorrência do valor.
+
+def primeira_ocorrencia(lista, valor):
     for i in range(len(lista)):
-        if lista[i] == alvo:
+        # Retorna imediatamente o primeiro índice encontrado.
+        if lista[i] == valor:
             return i
+
     return -1
 
 
-lista = [7, 12, 5, 12, 8]
-resultado = busca_sequencial(lista, 12)
-
-print("Índice da primeira ocorrência de 12:", resultado)
-# Resultado esperado: 1.
-# A segunda ocorrência está no índice 3, mas a busca já terminou no índice 1.
+if __name__ == "__main__":
+    print(primeira_ocorrencia([7, 12, 5, 12, 8], 12))
