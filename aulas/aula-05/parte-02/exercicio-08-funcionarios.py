@@ -1,9 +1,13 @@
+# Exercício 8 — Funcionários
+# Demonstra herança e polimorfismo no cálculo de bônus por tipo de funcionário.
+
 class Funcionario:
     def __init__(self, nome, salario):
         self.nome = nome
         self.salario = salario
 
     def calcular_bonus(self):
+        # Funcionário comum recebe 5% do salário como bônus.
         return self.salario * 0.05
 
     def __str__(self):
@@ -16,6 +20,7 @@ class Vendedor(Funcionario):
         self.vendas = vendas
 
     def calcular_bonus(self):
+        # O vendedor recebe o bônus base mais 2% sobre as vendas.
         return (self.salario * 0.05) + (self.vendas * 0.02)
 
 
@@ -25,9 +30,11 @@ class Gerente(Funcionario):
         self.equipe = equipe
 
     def calcular_bonus(self):
+        # O gerente recebe 10% do salário mais um valor por integrante da equipe.
         return (self.salario * 0.10) + (len(self.equipe) * 100)
 
 
+# Cada objeto possui sua própria implementação de calcular_bonus().
 funcionarios = [
     Funcionario("Ana", 3000),
     Vendedor("Carlos", 4000, 20000),
