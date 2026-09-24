@@ -1,14 +1,17 @@
 # Exercício 4 — Dicionário de contatos
-# Cada contato é armazenado em um dicionário usando o nome como chave.
+# Um dicionário armazena dados no formato chave-valor.
+# Neste exemplo, o nome do contato é a chave e o telefone é o valor.
 
 contatos = {
     "Ana": "1199999-1111",
     "Bruno": "1199999-2222"
 }
 
-# Adiciona um novo contato.
+# Adiciona Carlos usando seu nome como nova chave.
 contatos["Carlos"] = "1199999-3333"
 
-# Consulta um contato pela chave.
+# Acessa o telefone de Ana diretamente pela chave "Ana".
 print("Telefone da Ana:", contatos["Ana"])
+
+# Exibe todos os contatos armazenados.
 print("Contatos:", contatos)
