@@ -1,53 +1,28 @@
+# Exercício 7 — Hierarquia de veículos
+# Demonstra herança, atributos compartilhados e método sobrescrito.
+
 class Veiculo:
-    def __init__(self, placa, velocidade_max):
-        self.__placa = placa
-        self.__velocidade_max = velocidade_max
-        self.__velocidade_atual = 0
+    def __init__(self, marca, modelo):
+        self.marca = marca
+        self.modelo = modelo
 
-    def get_placa(self):
-        return self.__placa
-
-    def get_velocidade_max(self):
-        return self.__velocidade_max
-
-    def set_velocidade_max(self, nova_maxima):
-        if nova_maxima > 0 and nova_maxima >= self.__velocidade_atual:
-            self.__velocidade_max = nova_maxima
-            return True
-        return False
-
-    def acelerar(self, incremento=10):
-        if incremento > 0:
-            self.__velocidade_atual = min(
-                self.__velocidade_atual + incremento,
-                self.__velocidade_max
-            )
-
-    def frear(self, decremento=10):
-        if decremento > 0:
-            self.__velocidade_atual = max(
-                self.__velocidade_atual - decremento,
-                0
-            )
-
-    def __str__(self):
-        return (
-            f"Placa: {self.__placa} | "
-            f"Velocidade: {self.__velocidade_atual} km/h | "
-            f"Máxima: {self.__velocidade_max} km/h"
-        )
+    def apresentar(self):
+        # Retorna a identificação básica do veículo.
+        return f"{self.marca} {self.modelo}"
 
 
-veiculo = Veiculo("ABC1D23", 100)
+class Carro(Veiculo):
+    def apresentar(self):
+        # Adiciona a informação específica do tipo carro.
+        return f"Carro: {super().apresentar()}"
 
-print(veiculo)
-veiculo.acelerar()
-veiculo.acelerar(50)
-print(veiculo)
-veiculo.acelerar(100)
-print(veiculo)
-veiculo.frear(30)
-veiculo.frear()
-print(veiculo)
-veiculo.set_velocidade_max(120)
-print(veiculo)
+
+class Moto(Veiculo):
+    def apresentar(self):
+        # Adiciona a informação específica do tipo moto.
+        return f"Moto: {super().apresentar()}"
+
+
+if __name__ == "__main__":
+    print(Carro("Toyota", "Corolla").apresentar())
+    print(Moto("Honda", "CB 500").apresentar())
