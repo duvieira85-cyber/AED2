@@ -1,3 +1,6 @@
+# Projeto 2 — Fila de cinema
+# Simula clientes aguardando atendimento em sessões sucessivas, usando FIFO.
+
 from collections import deque
 
 
@@ -15,6 +18,7 @@ def fila_cinema(
     while atendidos < total_atendimentos:
         print(f"--- Sessão {sessao} ---")
 
+        # Clientes novos entram no final da fila antes dos atendimentos da sessão.
         for novo in chegadas_por_sessao.get(sessao, []):
             fila.append(novo)
             print(f"Chegou à fila: {novo}")
@@ -27,6 +31,7 @@ def fila_cinema(
             if not fila or atendidos == total_atendimentos:
                 break
 
+            # Retira sempre o cliente que está há mais tempo aguardando.
             cliente = fila.popleft()
             print(f"{cliente} comprou ingresso e entrou.")
             atendidos += 1
