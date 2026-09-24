@@ -1,31 +1,29 @@
-def existe_2_menores_v1(idades):
-    tamanho = len(idades)
+# Exercício 4 — Menores idades
+# Comparamos duas abordagens: duas varreduras O(n) e ordenação O(n log n).
+
+def contar_menor_repetido(idades):
+    # Primeira passagem: encontra a menor idade.
     menor = 200
+    for idade in idades:
+        if idade < menor:
+            menor = idade
 
-    for i in range(tamanho):
-        if idades[i] < menor:
-            menor = idades[i]
-
+    # Segunda passagem: conta quantas vezes a menor idade aparece.
     cont = 0
-    for i in range(tamanho):
-        if idades[i] == menor:
+    for idade in idades:
+        if idade == menor:
             cont += 1
 
     return cont > 1
 
 
-def existe_2_menores_v2(idades):
+def menor_repetido_ordenando(idades):
+    # A ordenação coloca as menores idades nas primeiras posições.
     idades.sort()
     return idades[0] == idades[1]
 
 
-idades1 = [18, 22, 18, 30, 25]
-idades2 = [18, 22, 20, 30, 25]
-
-print("v1:", existe_2_menores_v1(idades1))
-print("v2:", existe_2_menores_v2(idades2))
-print("Complexidade v1: O(n)")
-print("Complexidade v2: O(n log n)")
-
-# Dois laços consecutivos: O(n) + O(n) = O(n).
-# sort() domina a segunda versão: O(n log n).
+if __name__ == "__main__":
+    dados = [18, 22, 18, 30]
+    print("Duas passagens:", contar_menor_repetido(dados))
+    print("Ordenando:", menor_repetido_ordenando(dados.copy()))
