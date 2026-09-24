@@ -1,12 +1,13 @@
 # Exercício 3 — Fila de clientes
-# Simular uma fila e compreender o princípio FIFO.
+# A fila segue o princípio FIFO: o primeiro cliente que entra é o primeiro a sair.
 
-clientes = []
-clientes.append("Ana")
-clientes.append("Bruno")
-clientes.append("Carla")
-clientes.append("Daniel")
-cliente_saiu = clientes.pop(0)
+fila = ["Ana", "Bruno", "Carlos"]
 
-print(f"Cliente que saiu: {cliente_saiu}")
-print(f"Fila restante: {clientes}")
+# Adiciona um novo cliente ao final da fila.
+fila.append("Daniel")
+
+# Remove o cliente que está no início da fila.
+atendido = fila.pop(0)
+
+print("Cliente atendido:", atendido)
+print("Fila:", fila)
