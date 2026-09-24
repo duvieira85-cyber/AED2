@@ -1,15 +1,22 @@
 # Exercício 2 — Busca por nome
-# Como Mariana não está na lista, a busca percorre todos os elementos: pior caso O(n).
+# Mariana não está na lista, então a busca precisa percorrer
+# todos os elementos antes de concluir que o nome não existe.
+# Esse cenário representa o pior caso O(n).
+
 
 def busca_mariana(lista):
+    # Percorre os nomes desde a primeira posição.
     for i in range(len(lista)):
-        # Compara cada nome com o valor procurado.
+        # Compara o nome atual com o nome procurado.
         if lista[i] == "Mariana":
             return i
 
+    # Retorna -1 quando Mariana não foi encontrada.
     return -1
 
 
 if __name__ == "__main__":
     nomes = ["Ana", "Bruno", "Carlos"]
+
+    # Como Mariana não está na lista, o resultado será -1.
     print(busca_mariana(nomes))
