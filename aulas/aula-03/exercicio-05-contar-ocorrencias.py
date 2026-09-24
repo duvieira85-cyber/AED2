@@ -1,14 +1,19 @@
 # Exercício 5 — Contagem de ocorrências
-# Percorre a lista inteira para contar todas as vezes que o valor aparece.
+# Para contar todas as ocorrências, é necessário verificar todos os elementos.
+# Por isso, a operação possui complexidade O(n).
+
 
 def contar_ocorrencias(valor, lista):
+    # Inicia a contagem em zero.
     contador = 0
 
+    # Percorre toda a lista, pois o valor pode aparecer várias vezes.
     for elemento in lista:
         if elemento == valor:
-            # Incrementa o contador quando encontra o valor procurado.
+            # Cada correspondência encontrada aumenta o contador.
             contador += 1
 
+    # Retorna a quantidade total de ocorrências encontradas.
     return contador
 
 
