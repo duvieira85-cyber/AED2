@@ -1,12 +1,14 @@
 # Exercício 4 — Dicionário de contatos
-# Armazenar e recuperar dados por meio de pares chave-valor.
+# Cada contato é armazenado em um dicionário usando o nome como chave.
 
 contatos = {
-    "Ana": "1234-5678",
-    "Bruno": "9876-5432"
+    "Ana": "1199999-1111",
+    "Bruno": "1199999-2222"
 }
 
-contatos["Carlos"] = "1122-3344"
+# Adiciona um novo contato.
+contatos["Carlos"] = "1199999-3333"
 
-print("Telefone da Ana:")
-print(contatos["Ana"])
+# Consulta um contato pela chave.
+print("Telefone da Ana:", contatos["Ana"])
+print("Contatos:", contatos)
