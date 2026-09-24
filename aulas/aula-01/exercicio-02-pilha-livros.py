@@ -1,11 +1,13 @@
 # Exercício 2 — Pilha de livros
-# Simular uma pilha e compreender o princípio LIFO.
+# A pilha segue o princípio LIFO: o último livro inserido é o primeiro a sair.
 
-livros = []
-livros.append("O Pequeno Príncipe")
-livros.append("Dom Quixote")
-livros.append("1984")
-livro_removido = livros.pop()
+pilha = ["Python", "Java", "C++"]
 
-print(f"Livro removido: {livro_removido}")
-print(f"Pilha restante: {livros}")
+# Adiciona um novo livro no topo da pilha.
+pilha.append("JavaScript")
+
+# Remove o livro que está no topo.
+removido = pilha.pop()
+
+print("Livro removido:", removido)
+print("Pilha:", pilha)
