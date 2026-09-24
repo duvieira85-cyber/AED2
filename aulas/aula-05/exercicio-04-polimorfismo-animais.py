@@ -1,22 +1,21 @@
-class Animal:
-    def fazer_som(self):
-        print("Algum som")
+# Exercício 4 — Polimorfismo
+# A função faz a mesma chamada para objetos diferentes, cada um com seu comportamento.
+
+class Cachorro:
+    def emitir_som(self):
+        return "O cachorro late."
 
 
-class Cachorro(Animal):
-    def fazer_som(self):
-        print("Au Au")
+class Gato:
+    def emitir_som(self):
+        return "O gato mia."
 
 
-class Gato(Animal):
-    def fazer_som(self):
-        print("Miau")
+def fazer_animal_emitir_som(animal):
+    # Não importa a classe concreta; basta que o objeto possua emitir_som().
+    print(animal.emitir_som())
 
 
-def animais_falam(lista_animais):
-    for animal in lista_animais:
-        animal.fazer_som()
-
-
-lista_animais = [Cachorro(), Gato(), Cachorro()]
-animais_falam(lista_animais)
+if __name__ == "__main__":
+    fazer_animal_emitir_som(Cachorro())
+    fazer_animal_emitir_som(Gato())
