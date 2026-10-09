@@ -11,13 +11,6 @@ Repositório de apoio para preparação da P1.
 - Listas encadeadas: nós, `head`, `next`, percurso, busca, contagem e remoção
 - Implementação e interpretação de código Python
 
-## Organização sugerida
-
-- `simulado-01.md` — primeiro simulado e correção
-- `simulado-02.md` — segundo simulado e correção
-- `exercicios-praticos/` — exercícios de implementação
-- `resumos/` — mapas mentais e revisão rápida
-
 ## Objetivo
 
 Concentrar os simulados, exercícios resolvidos e revisões para a P1 em um único local.
