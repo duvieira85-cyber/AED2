@@ -3,13 +3,40 @@
 # lista vazia, inserção, remoção, busca do meio, reversão
 # e navegação dos projetos duplamente encadeados.
 
-from exercicio_02_insercao_cabeca import LinkedList as ListaCabeca
-from exercicio_03_remocao_valor import LinkedList as ListaRemocao
-from exercicio_05_comprimento_lista import LinkedList as ListaComprimento, get_length
-from exercicio_06_elemento_meio import LinkedList as ListaMeio, find_middle_element
-from exercicio_07_reversao_lista import LinkedList as ListaReversao, reverse_linked_list
-from projeto_01_playlist import Music, MusicPlaylist
-from projeto_02_historico_browser import BrowserHistory
+import importlib.util
+import os
+
+
+def carregar(nome_arquivo):
+    # Os nomes de arquivo da aula usam hifen, que nao pode aparecer
+    # em um import normal — os modulos sao carregados pelo caminho.
+    caminho = os.path.join(os.path.dirname(__file__), nome_arquivo)
+    spec = importlib.util.spec_from_file_location(nome_arquivo[:-3].replace("-", "_"), caminho)
+    modulo = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(modulo)
+    return modulo
+
+
+cabeca = carregar("exercicio-02-insercao-cabeca.py")
+remocao = carregar("exercicio-03-remocao-valor.py")
+comprimento = carregar("exercicio-05-comprimento-lista.py")
+meio = carregar("exercicio-06-elemento-meio.py")
+reversao = carregar("exercicio-07-reversao-lista.py")
+playlist = carregar("projeto-01-playlist.py")
+historico = carregar("projeto-02-historico-browser.py")
+
+ListaCabeca = cabeca.LinkedList
+ListaRemocao = remocao.LinkedList
+ListaComprimento = comprimento.LinkedList
+get_length = comprimento.get_length
+ListaMeio = meio.LinkedList
+find_middle_element = meio.find_middle_element
+ListaReversao = reversao.LinkedList
+reverse_linked_list = reversao.reverse_linked_list
+Music = playlist.Music
+MusicPlaylist = playlist.MusicPlaylist
+BrowserHistory = historico.BrowserHistory
+
 
 
 def testar():
